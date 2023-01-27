@@ -15,7 +15,7 @@ github_username:  nuker
 
 
 # Build settings
-theme: minia
+theme: minima
 plugins:
   - jekyll-feed
   - jekyll-remote-themes
