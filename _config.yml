@@ -1,0 +1,21 @@
+title: nuker
+
+email: nukerr1337@gmail.com
+
+description: >- # this means to ignore newlines until "baseurl:"
+  Be good and if you cant, be good at it.
+
+baseurl: "" # the subpath of your site, e.g. /blog
+
+url: "https://nuker.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+
+twitter_username: nukerwashere
+
+github_username:  nuker
+
+
+# Build settings
+theme: minia
+plugins:
+  - jekyll-feed
+  - jekyll-remote-themes
