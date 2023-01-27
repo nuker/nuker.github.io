@@ -4,15 +4,14 @@ title: About
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
+Hello my name is nuker, welcome to my blog! **Since I was a child Ive been building and breaking things. As I got older video games and computers took over my life, so I learned how to build and break those too ;)
+Ive just started my journey in infosec/cybersecurity and ever since I learned how to write my first buffer overflow I feel in love, so now im seeking more knowledge than I ever have before. My ultimate goal is to become an exploit developer for a red team (Plan A) or become some sort of network penetration tester (Plan B), I really enjoy exploit development but one of the two is just fine for me. Since I am just starting to learn the ins and outs of infosec I want to make a blog so I can keep track of my learning and monitor my progress as I move forward in my journey. Who knows maybe my path will change and I become some sort of SOC analyst theres so many places I could go. One of the things that has made me gravitate towards infosec is the fact that there are so many topics yet theyre all different, they all connect in one way or another.**
 
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
+Here I will be writing/publishing about things such as 
+  - Writeups
+  - Events within the infosec community
+  - Programming
+  - Tutorials
+  - video games
 
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
-
-
-[jekyll-organization]: https://github.com/jekyll
+I hope you enjoy your time here if there is anything wrong or there is any misinformation feel free to shoot me an email! Feed back is greatly appreciated.
