@@ -15,8 +15,8 @@ github_username:  nuker
 
 
 # Build settings
-#theme: midnight
-remote_theme: pages-themes/midnight@v0.2.0
+theme: minima
+#remote_theme: pages-themes/midnight@v0.2.0
 plugins:
   - jekyll-feed
   - jekyll-remote-theme
