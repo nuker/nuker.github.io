@@ -19,3 +19,7 @@ theme: jekyll-theme-midnight
 plugins:
   - jekyll-feed
   - jekyll-remote-theme
+  - jekyll-paginate
+
+paginate: 5
+paginate: "/page:num/"
