@@ -195,7 +195,6 @@ smbclient \\\\active.htb\\Replication -I 10.129.190.90 -N
 </Groups>
 ```
 > With a quick google search of `group policy password decrypt` we will find a tool called [gpp-decrypt](https://www.kali.org/tools/gpp-decrypt/) due to the way my machine is configured I will instead use a ruby script that does the same thing
-> due to the way my machine is configured I will use a script that decrypts the password for me locally aswell 
 
 ```ruby
 
