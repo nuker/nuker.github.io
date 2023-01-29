@@ -3,4 +3,4 @@ layout: post
 permalink: /about/
 ---
 
-__Still learning, always am.__
+__still learning, always am.__
