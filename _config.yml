@@ -22,4 +22,3 @@ plugins:
   - jekyll-paginate
 
 paginate: 5
-paginate: "/page:num/"
