@@ -47,7 +47,7 @@ PORT      STATE SERVICE       REASON          VERSION
 49175/tcp open  msrpc         syn-ack ttl 127 Microsoft Windows RPC
 49176/tcp open  msrpc         syn-ack ttl 127 Microsoft Windows RPC
 ```
-> Since we can access rpc with a null session we can confirm that this is a domain controller
+> We will use a null session with rpcclient to confirm this is a domain controller
 
 ```bash
 rpcclient -U "" 10.129.190.90 -N
@@ -155,7 +155,7 @@ Service Info: Host: DC; OS: Windows 2008 R2
 ```
 
 > With the domain naming context we can see if we have access to anyshares
-> we can also get the domain namefrom CME so we will do both enumerate 
+> we can also get the domain name from CME so we will do both enumerate 
 > shares and resolve the domain name
 
 > Since we were able to authenticate to the DC with a null session we do the same with CME
