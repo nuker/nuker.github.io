@@ -17,7 +17,7 @@ date: 2024-02-01
 
 > **Seeing the full functionality first is a good place to start. Then we will look at the code so you can understand how it works.**
 
-# **Main**
+# **Henka**
 
 > **Start simple**
 
