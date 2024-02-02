@@ -8,7 +8,7 @@ date: 2024-02-01
 
 # **Previous Post**
 
-- **[Previous](https://nuker.github.io/2024/01/31/Henka-in-depth-1.html)**
+- **[Previous](https://nuker.github.io/2024/02/01/Henka-In-depth-1.html)**
 
 > **In the last post we went over the basic functionality of Henka**
 > **now we are going to pick it apart and understand what it really is doing.**

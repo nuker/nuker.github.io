@@ -15,7 +15,7 @@ date: 2024-02-01
 
 # **Demo**
 
-> **Seeing the full functionality first is a good place to start. Then when we will look at the code so you can understand how it works.**
+> **Seeing the full functionality first is a good place to start. Then we will look at the code so you can understand how it works.**
 
 # **Main**
 
@@ -146,7 +146,7 @@ xxd bundle/win/bin/Henka.exe | grep -i "HENKA-"
 
 # **Next post**
 
-- **[Next post](https://nuker.github.io/2024/01/31/Henka-in-depth-2.html)**
+- **[Next post](https://nuker.github.io/2024/02/01/Henka-In-depth-2.html)**
 
 > **In the next post we will**
 
