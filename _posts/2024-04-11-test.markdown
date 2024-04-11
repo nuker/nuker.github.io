@@ -1,0 +1,28 @@
+---
+layout: post
+title: "Hello there"
+---
+
+
+> Welcome to my corner of the internet, where I will be sharing my learning
+> and research on various topics within cybersecurity and computer science. My main interests are:
+
+
++ Game hacking and Anti-cheats
+	+ In the early stages of my learning journey, I quickly recognized the striking similarity 
+	between the techniques employed by video game cheats and those utilized by malware to achieve their goals. For instance, 
+	both anti-cheat systems and antivirus programs thwart attempts to access specific processes by denying handle openings. 
+	Consequently, certain malware and cheats circumvent this obstacle by utilizing handles that are already open.
+
+
++ Offensive Security tool development
+	+ Offensive Security Tool Development intrigues me deeply, primarily because of my passion for programming and the sheer 
+	flexibility it offers. The ability to craft custom tools on demand holds immense appeal for several reasons. For instance, 
+	consider a scenario where existing tools are heavily scrutinized and flagged. In such cases, having the capability to develop 
+	alternatives that perform similar functions without triggering signatures could significantly prolong one's effectiveness during an engagement.
+
+
++ Operating systems
+	+ Since writing my first Windows kernel driver, my fascination with operating systems has steadily blossomed. Lately, 
+	I've been learning of the master boot record (MBR), normally in sector 0 or the first 512 bytes of your SSD or HDD, it harbors the bootloader. 
+	This vital component determines the operating system to be loaded, marking a pivotal entry point into the realm of system-level operations.
